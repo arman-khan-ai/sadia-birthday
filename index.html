@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Birthday Surprise for Sadia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Dreamy illustrated atmosphere: fixed behind every page -->
+  <div class="ambient-scene" aria-hidden="true">
+    <div class="scene-art"></div>
+    <div class="scene-wash"></div>
+    <div class="petal-layer" id="petal-layer"></div>
+    <div class="sparkle-layer" id="sparkle-layer"></div>
+  </div>
+
+  <main id="app">
+    <section class="gate" id="nameGate">
+      <div class="gate-content">
+        <span class="eyebrow">A LITTLE SOMETHING FOR SOMEONE SPECIAL</span>
+
+        <h1>Before we begin...</h1>
+
+        <p>What's your name?</p>
+
+        <form id="nameForm">
+          <input
+            type="text"
+            id="guestName"
+            placeholder="Your name"
+            autocomplete="off"
+            required
+          >
+          <button type="submit">Continue <span>→</span></button>
+        </form>
+
+        <p class="error" id="nameError"></p>
+      </div>
+    </section>
+
+    <section class="gate hidden" id="passwordGate">
+      <div class="gate-content">
+        <span class="eyebrow">A LITTLE SECURITY CHECK</span>
+
+        <h1>Hold on, Sadia...</h1>
+
+        <p>Prove it's really you! Enter the secret password:</p>
+
+        <form id="passwordForm">
+          <input
+            type="password"
+            id="passwordInput"
+            placeholder="Secret password"
+            required
+          >
+
+          <button type="submit">Unlock my surprise <span>→</span></button>
+        </form>
+
+        <button class="hint-button" id="hintButton" type="button">
+          Need a hint?
+        </button>
+
+        <p class="hint hidden" id="passwordHint"></p>
+        <p class="error" id="passwordError"></p>
+      </div>
+    </section>
+
+    <section class="guest hidden" id="guestPage">
+      <div class="guest-card">
+        <span class="eyebrow">A LITTLE BIRTHDAY VISIT</span>
+        <h1 id="guestGreeting"></h1>
+
+        <p id="guestMessage"></p>
+
+        <h2>Leave a Birthday Wish for Sadia</h2>
+
+        <form id="wishForm">
+          <input type="text" id="wishName" readonly>
+          <textarea
+            id="wishMessage"
+            placeholder="Write a little birthday wish..."
+            maxlength="300"
+            required
+          ></textarea>
+
+          <button type="submit">Post Sticky Note</button>
+        </form>
+
+        <p id="wishStatus"></p>
+        <div id="wishPreview"></div>
+      </div>
+    </section>
+
+    <section id="vipPage" class="hidden">
+      <header class="hero">
+        <span class="eyebrow">DECEMBER 13 · A DAY FOR YOU</span>
+        <h1>Happy Birthday, My Love</h1>
+
+        <p>
+          Happy Birthday, Sadia. You're the reason I smile.
+          You're the one whom I wanna smile with.
+          <br><br>
+          With all my love, I wish you a glorious year ahead.
+          <br>
+          Happy Birthday, my sweetheart.
+          <br><br>
+          With love — your Ameer.
+        </p>
+
+        <button onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">
+          Explore your little world ↓
+        </button>
+      </header>
+
+      <section class="section" id="gallery">
+        <h2>Our Little Memories</h2>
+        <p>Scratch each little Polaroid to reveal a memory ♡</p>
+        <div id="photoGrid" class="photo-grid scratch-polaroid-grid"></div>
+        <p class="scratch-hint">Use your finger or mouse to gently scratch the silver layer.</p>
+      </section>
+
+      <section class="section" id="quiz">
+        <h2>A Little Game For You</h2>
+        <div id="quizCard"></div>
+      </section>
+
+      <section class="section" id="loveNotes">
+        <h2>A Little Note For You</h2>
+        <div class="note-card">
+          <p id="randomNote">Something lovely is waiting...</p>
+          <button id="newNote">Open a little note ♡</button>
+        </div>
+      </section>
+
+      <section class="section" id="letter">
+        <h2>A Letter From Me</h2>
+        <div id="letterCard" class="letter-card">
+          <button id="openLetter">♡ Open your letter ♡</button>
+          <p id="letterText" class="hidden"></p>
+        </div>
+      </section>
+
+      <section class="section" id="wishes">
+        <h2>Birthday Wishes From Your People</h2>
+        <div id="wishBoard" class="wish-board"></div>
+      </section>
+
+      <footer>
+        Made with love, just for Sadia. ♡
+        <br>— Ameer
+        <br><button type="button" class="admin-link" id="adminOpen">A Little More Magic ♡</button>
+      </footer>
+    </section>
+  </main>
+
+  <div class="music-dock" aria-label="Background music controls">
+    <span class="music-orbit" aria-hidden="true">♪</span>
+    <div class="music-copy">
+      <strong id="music-title">A little melody for you</strong>
+      <small id="music-status">A quiet tune for our little world</small>
+    </div>
+    <button id="music-toggle" type="button" aria-label="Play background music" aria-pressed="false">
+      <span id="music-icon">▶</span>
+    </button>
+  </div>
+
+  <section class="admin-overlay hidden" id="adminLogin" role="dialog" aria-modal="true" aria-labelledby="adminLoginTitle">
+    <div class="admin-dialog">
+      <button class="admin-close" type="button" data-close-admin aria-label="Close">×</button>
+      <span class="eyebrow">JUST FOR THE MAGIC MAKER</span>
+      <h2 id="adminLoginTitle">Admin access</h2>
+      <form id="adminLoginForm"><input id="adminPassword" type="password" placeholder="Admin password" required><button type="submit">Unlock controls</button></form>
+      <p id="adminLoginStatus" class="admin-status"></p>
+    </div>
+  </section>
+  <section class="admin-overlay hidden" id="adminPanel" role="dialog" aria-modal="true" aria-labelledby="adminPanelTitle">
+    <div class="admin-dialog admin-wide">
+      <button class="admin-close" type="button" data-close-admin aria-label="Close">×</button>
+      <span class="eyebrow">YOUR LITTLE CONTROL ROOM</span>
+      <h2 id="adminPanelTitle">Birthday admin</h2>
+      <div class="admin-tools">
+        <section><h3>Birthday music</h3><p>Upload an MP3, M4A, WAV or OGG song.</p><input id="adminSong" type="file" accept="audio/mpeg,audio/mp4,audio/wav,audio/ogg,audio/*"><button id="uploadSong" type="button">Upload song</button><p id="musicAdminStatus" class="admin-status"></p></section>
+        <section><div class="admin-row"><h3>Sticky-note wishes</h3><button id="refreshAdminWishes" type="button" class="secondary">Refresh board</button></div><div id="adminWishList"></div></section>
+      </div>
+      <button type="button" id="adminLogout" class="secondary">Log out</button>
+    </div>
+  </section>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
