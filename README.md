@@ -1,14 +1,1 @@
-{
-  "name": "sadia-birthday-journal",
-  "version": "1.0.0",
-  "description": "A birthday surprise made with love by Ameer",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "cors": "^2.8.6",
-    "express": "^5.3.0",
-    "pg": "^8.13.1"
-  }
-}
+# sadia-birthday
